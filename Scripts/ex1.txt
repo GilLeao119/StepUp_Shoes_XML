@@ -1,0 +1,29 @@
+[
+  {
+    $group: {
+      _id: "$appointment.partner",
+      Realizadas: {
+        $sum: {
+          $cond: [
+            {
+              $eq: ["$appointment.state", "1"],
+            },
+            1,
+            0,
+          ],
+        },
+      },
+      "Não Realizadas": {
+        $sum: {
+          $cond: [
+            {
+              $eq: ["$appointment.state", "0"],
+            },
+            1,
+            0,
+          ],
+        },
+      },
+    },
+  },
+]

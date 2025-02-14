@@ -1,0 +1,29 @@
+[
+  {
+    $group: {
+      _id: "$appointment.expert",
+      duration: {
+        $avg: {
+          $subtract: [
+            {
+              $toDate:
+                "$appointment.inspectionEndTime",
+            },
+            {
+              $toDate:
+                "$appointment.inspectionStartTime",
+            },
+          ],
+        },
+      },
+    },
+  },
+  {
+    $project: {
+      expert: "$_id",
+      averageDuration: {
+        $divide: ["$duration", 1000 * 60],
+      },
+    },
+  },
+]

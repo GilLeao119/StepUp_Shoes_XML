@@ -1,0 +1,24 @@
+[
+  {
+    $unwind: {
+      path: "$parametro",
+    },
+  },
+  {
+    $match:
+      /**
+       * query: The query in MQL.
+       */
+      {
+        "parametro.parametro.value_S": 1,
+      },
+  },
+  {
+    $group: {
+      _id: "$appointment.expert",
+      "Nao conformidades": {
+        $sum: 1,
+      },
+    },
+  },
+]

@@ -1,0 +1,40 @@
+[
+  {
+    $unwind: {
+      path: "$parametro",
+    },
+  },
+  {
+    $group: {
+      _id: "$appointmentId",
+      ParametrosYes: {
+        $sum: {
+          $cond: [
+            {
+              $eq: [
+                "$parametro.parametro.value_S",
+                0,
+              ],
+            },
+            1,
+            0,
+          ],
+        },
+      },
+      ParametrosNo: {
+        $sum: {
+          $cond: [
+            {
+              $eq: [
+                "$parametro.parametro.value_S",
+                1,
+              ],
+            },
+            1,
+            0,
+          ],
+        },
+      },
+    },
+  },
+]

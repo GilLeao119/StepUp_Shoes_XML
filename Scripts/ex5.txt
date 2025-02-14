@@ -1,0 +1,54 @@
+[
+  {
+    $unwind: {
+      path: "$parametro",
+    },
+  },
+  {
+    $match: {
+      "parametro.parametro.value_S": 1,
+    },
+  },
+  {
+    $group: {
+      _id: "$parametro.parametro",
+      non_conformities: {
+        $sum: 1,
+      },
+    },
+  },
+  // {
+  //   $group: {
+  //     _id: "$parametro.parametro",
+  //     non_conformities: {
+  //       $sum: {
+  //         $cond: [
+  //           {
+  //             $eq: ["$parametro.value_S", 1],
+  //           },
+  //           1,
+  //           0,
+  //         ],
+  //       },
+  //     },
+  //     total: {
+  //       $sum: 1,
+  //     },
+  //   },
+  // },
+  {
+    $project: {
+      _id: 1,
+      non_conformities: 1,
+      total: 1,
+      percentage: {
+        $multiply: [
+          {
+            $divide: ["$non_conformities", 24562],
+          },
+          100,
+        ],
+      },
+    },
+  },
+]

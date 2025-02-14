@@ -1,0 +1,42 @@
+[
+  {
+    $project: {
+      year: {
+        $year: {
+          $dateFromString: {
+            dateString: "$date",
+          },
+        },
+      },
+      month: {
+        $month: {
+          $dateFromString: {
+            dateString: "$date",
+          },
+        },
+      },
+      car_id: "$car._id",
+    },
+  },
+  {
+    $group: {
+      _id: {
+        year: "$year",
+        month: "$month",
+      },
+      unique_cars: {
+        $addToSet: "$car_id",
+      },
+    },
+  },
+  {
+    $project: {
+      _id: 0,
+      year: "$_id.year",
+      month: "$_id.month",
+      number_of_vehicles: {
+        $size: "$unique_cars",
+      },
+    },
+  },
+]

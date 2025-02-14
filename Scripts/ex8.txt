@@ -1,0 +1,43 @@
+[
+  {
+    $group: {
+      _id: "$address.city",
+      count: {
+        $sum: 1,
+      },
+    },
+  },
+  // {
+  //   $project: {
+  //     _id: 1,
+  //     count: 1,
+  //     percentage: {
+  //       $multiply: [
+  //         {
+  //           $divide: [
+  //             "$count",
+  //             {
+  //               $sum: "$count",
+  //             },
+  //           ],
+  //         },
+  //         100,
+  //       ],
+  //     },
+  //   },
+  // },
+  {
+    $project: {
+      _id: 1,
+      count: 1,
+      percentage: {
+        $multiply: [
+          {
+            $divide: ["$count", 26307],
+          },
+          100,
+        ],
+      },
+    },
+  },
+]
