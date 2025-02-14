@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+    elementFormDefault="unqualified"
+    xmlns="http://projeto.pei.estg/2022/Peritagens"
+    targetNamespace="http://projeto.pei.estg/2022/Peritagens">
+    
+    <xs:complexType name = "peritagemType">
+        <xs:sequence>
+            <xs:annotation>
+                <xs:documentation>O que uma peritagem tem</xs:documentation>
+            </xs:annotation>
+            <xs:element name = "Dia" type = "xs:date"/>
+            <xs:element name = "Codigo" type = "xs:integer"/>
+            <xs:element name = "Id_parceiro" type = "xs:string"/>
+            <xs:element name = "Id_perito" type = "xs:string"/>
+            <xs:element name = "Estado_peritagem" type = "EstadoType"/>
+            <xs:element name = "Hora_inicio" type = "xs:time"/>
+            <xs:element name = "Hora_fim" type = "xs:time"/>
+            <xs:element name = "Nome_entidade" type = "xs:string"/>
+            <xs:element name = "Tipo_entidade" type = "EntidadeType"/>
+            <xs:element name = "Parametros" type = "ParametrosType"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:element name="peritagens">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:annotation>
+                    <xs:documentation>criação de uma ou mais peritagens</xs:documentation>
+                </xs:annotation>
+                <xs:element name="peritagem" type="peritagemType" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:complexType name="EstadoType">
+        <xs:sequence minOccurs="0">
+            <xs:element name="Categoria" minOccurs="1" maxOccurs="1">
+                <xs:simpleType>
+                    <xs:annotation>
+                        <xs:documentation>Tem de se selecionar uma das opções na enumeração e escrever-se uma explicação caso seja "Other", se Verificação seja "Não Realizada"</xs:documentation>
+                    </xs:annotation>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Inaccessible location"/>
+                        <xs:enumeration value="Missing vehicle"/>
+                        <xs:enumeration value="Other"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Explicacao" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="400"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="Verificação" type="VerificacaoType"/>
+    </xs:complexType>
+    
+    <xs:simpleType name="VerificacaoType">
+        <xs:restriction base="xs:string">
+            <xs:annotation>
+                <xs:documentation>Tem de se selecionar uma das opções na enumeração</xs:documentation>
+            </xs:annotation>
+            <xs:enumeration value="Realizada"/>
+            <xs:enumeration value="Não Realizada"/>   
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="EntidadeType">
+        <xs:restriction base="xs:string">
+            <xs:annotation>
+                <xs:documentation>Tem de se selecionar uma das opções na enumeração</xs:documentation>
+            </xs:annotation>
+            <xs:enumeration value="Cliente"/>
+            <xs:enumeration value="Oficina"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    
+    
+    <xs:complexType name="ParametrosType">
+        <xs:sequence>
+            <xs:annotation>
+                <xs:documentation>O que os parametros podem ter</xs:documentation>
+            </xs:annotation>
+            <xs:element name="Estado_bateria" type="Types_Bateria"/>
+            <xs:element name="Nivel_oleo_transmissao" type="Types_Oleo_Transmissao"/>
+            <xs:element name="Transmissao_motor" type="Types_Transmissao"/>
+            <xs:element name="Sistema_refrigeracao" type="Types_Refrigeração"/>
+            <xs:element name="Suporte_motor" type="Types_Suporte_Motor"/>
+            <xs:element name="Som_motor" type="Types_Som_Motor"/>
+            <xs:element name="Gases" type="Types_Gases"/>
+            <xs:element name="Caixa_velocidades" type="Types_Caixa_Velocidades"/>
+            <xs:element name="Numero_quilometros" type="xs:integer"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="Types_Bateria">
+        <xs:sequence minOccurs="0">
+            <xs:element name="Estados_bateria">
+                <xs:simpleType>
+                    <xs:annotation>
+                        <xs:documentation>Caso Conformidade seja "No" escolhe-se uma das enumerações</xs:documentation>
+                    </xs:annotation>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value = "Weak"/>
+                        <xs:enumeration value = "Not_Working"/>
+                        <xs:enumeration value = "Jump_Start"/>
+                        <xs:enumeration value = "Discharging_light_glowing"/>
+                        <xs:enumeration value = "Intermittent_functioning"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="Conformidade" type="ConformidadeType"/>
+    </xs:complexType>
+    
+    <xs:complexType name="Types_Oleo_Transmissao">
+        <xs:sequence minOccurs="0">
+            <xs:element name="Estados_oleo_transmissao" minOccurs="1" maxOccurs="9">
+                <xs:simpleType>
+                    <xs:annotation>
+                        <xs:documentation>Caso Conformidade seja "No" escolhe-se uma ou mais das enumerações</xs:documentation>
+                    </xs:annotation>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value = "Dirty"/>
+                        <xs:enumeration value = "Leakage_from_Side_cover"/>
+                        <xs:enumeration value = "Leakage_from_Sump_chamber"/>
+                        <xs:enumeration value = "Leakage_from_Tappet_Cover"/>
+                        <xs:enumeration value = "Leakage_from_Turbo_Charger"/>
+                        <xs:enumeration value = "Leaking"/>
+                        <xs:enumeration value = "Level_Low"/>
+                        <xs:enumeration value = "Low_Pressure_warning_light_glowing"/>
+                        <xs:enumeration value = "Mixed_with_Coolant"/>  
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="Conformidade" type="ConformidadeType"/>
+    </xs:complexType>
+    
+    <xs:complexType name="Types_Transmissao">
+        <xs:sequence minOccurs="0">
+            <xs:element name="Estados_transmissao" minOccurs="1" maxOccurs="12">
+                <xs:simpleType>
+                    <xs:annotation>
+                        <xs:documentation>Caso Conformidade seja "No" escolhe-se uma ou mais das enumerações</xs:documentation>
+                    </xs:annotation>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value = "Car_not_working_on_Petrol"/>
+                        <xs:enumeration value ="Fuel_Leakage_From_Injector"/>
+                        <xs:enumeration value = "MIL_light_glowing"/>
+                        <xs:enumeration value = "Misfiring"/>
+                        <xs:enumeration value = "Not_converting_to_CNG"/>
+                        <xs:enumeration value = "Over_heating"/>
+                        <xs:enumeration value = "RPM_fluctuating"/>
+                        <xs:enumeration value = "RPM_not_increasing"/>
+                        <xs:enumeration value = "Repaired"/>
+                        <xs:enumeration value = "Seized"/>
+                        <xs:enumeration value = "Sump_Damaged"/>
+                        <xs:enumeration value = "Turbo_charger_not_working"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="Conformidade" type="ConformidadeType"/>
+    </xs:complexType>
+    
+    <xs:complexType name="Types_Refrigeração">
+        <xs:sequence minOccurs="0">
+            <xs:element name="Estados_sistema_refrigeração" minOccurs="1" maxOccurs="4">
+                <xs:simpleType>
+                    <xs:annotation>
+                        <xs:documentation>Caso Conformidade seja "No" escolhe-se uma ou mais das enumerações</xs:documentation>
+                    </xs:annotation>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value = "Dirty"/>
+                        <xs:enumeration value = "Leaking"/>
+                        <xs:enumeration value = "Mixed_with_Engine_Oil"/>
+                        <xs:enumeration value = "Radiator_Damaged"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="Conformidade" type="ConformidadeType"/>
+    </xs:complexType>
+    
+    <xs:complexType name="Types_Suporte_Motor">
+        <xs:sequence minOccurs="0">
+            <xs:element name="Estados_suporte_motor" minOccurs="1" maxOccurs="3">
+                <xs:simpleType>
+                    <xs:annotation>
+                        <xs:documentation>Caso Conformidade seja "No" escolhe-se uma ou mais das enumerações</xs:documentation>
+                    </xs:annotation>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value = "Broken"/>
+                        <xs:enumeration value = "Excess_Vibration"/>
+                        <xs:enumeration value = "Loose"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="Conformidade" type="ConformidadeType"/>
+    </xs:complexType>
+    
+    <xs:complexType name="Types_Som_Motor">
+        <xs:sequence minOccurs="0">
+            <xs:element name="Estados_som_motor" minOccurs="1" maxOccurs="7">
+                <xs:simpleType>
+                    <xs:annotation>
+                        <xs:documentation>Caso Conformidade seja "No" escolhe-se uma ou mais das enumerações</xs:documentation>
+                    </xs:annotation>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value = "Alternator_Brg_Noise"/>
+                        <xs:enumeration value = "Engine_Auxiliary_Noise"/>
+                        <xs:enumeration value = "Injector_Noise"/>
+                        <xs:enumeration value = "Tappet_Noise"/>
+                        <xs:enumeration value = "Timing_Noise"/>
+                        <xs:enumeration value = "Water_Pump_Brg_Noise"/>
+                        <xs:enumeration value = "Whistling_Noise-Turbo"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="Conformidade" type="ConformidadeType"/>
+    </xs:complexType>
+    
+    <xs:complexType name="Types_Gases">
+        <xs:sequence minOccurs="0">
+            <xs:element name="Estados_gases" minOccurs="1" maxOccurs="6">
+                <xs:simpleType>
+                    <xs:annotation>
+                        <xs:documentation>Caso Conformidade seja "No" escolhe-se uma ou mais das enumerações</xs:documentation>
+                    </xs:annotation>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value = "Black"/>
+                        <xs:enumeration value = "Blue"/>
+                        <xs:enumeration value = "Leakage_from_manifold"/>
+                        <xs:enumeration value = "Noise_from_silencer_assembly"/>
+                        <xs:enumeration value = "Silencer_assembly_damaged"/>
+                        <xs:enumeration value = "White"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="Conformidade" type="ConformidadeType"/>
+    </xs:complexType>
+    
+    <xs:complexType name="Types_Caixa_Velocidades">
+        <xs:sequence minOccurs="0">
+            <xs:element name ="Estados_caixa_velocidades" minOccurs="1" maxOccurs="7">
+                <xs:simpleType>
+                    <xs:annotation>
+                        <xs:documentation>Caso Conformidade seja "No" escolhe-se uma ou mais das enumerações</xs:documentation>
+                    </xs:annotation>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value = "Auto_Transmission_Not_Satisfactory"/>
+                        <xs:enumeration value = "Bearing_Noise"/>
+                        <xs:enumeration value = "Burning"/>
+                        <xs:enumeration value = "Hard"/>
+                        <xs:enumeration value = "Low_Pick_Up"/>
+                        <xs:enumeration value = "Slip"/>
+                        <xs:enumeration value = "Spongy"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="Conformidade" type="ConformidadeType"/>
+    </xs:complexType>
+    
+    <xs:simpleType name="ConformidadeType">
+        <xs:restriction base="xs:string">
+            <xs:annotation>
+                <xs:documentation>Tem de se selecionar uma das opções na enumeração</xs:documentation>
+            </xs:annotation>
+            <xs:enumeration value="Yes"/>
+            <xs:enumeration value="No"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

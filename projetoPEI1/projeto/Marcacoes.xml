@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<marcacao xmlns="http://projeto.pei.estg/2022/Marcacoes">
+    <Codigo_marcacao>1</Codigo_marcacao>
+    <Local>
+        <morada>
+            <cidade>porto</cidade>
+            <codigo_postal>4615-693</codigo_postal>
+            <rua>rua do batalhao</rua>
+            <numero_porta>92</numero_porta>
+        </morada>
+        <name>Arroz de pato</name>
+        <dono>true</dono>
+    </Local>
+    <Info_veiculo xmlns="">
+        <Marca>Mercedes</Marca>
+        <Modelo>S63</Modelo>
+        <Combustivel>Gasoline</Combustivel>
+        <Transmissao>Auto</Transmissao>
+        <Ano>2003</Ano>
+        <Cavalagem>260</Cavalagem>
+    </Info_veiculo>
+    <Id_Perito xmlns="">CF08</Id_Perito>
+    <Data xmlns="">2003-03-03</Data>
+</marcacao>

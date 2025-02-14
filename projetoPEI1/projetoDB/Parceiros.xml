@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<parceiros xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns="http://projeto.pei.estg/2022/Parceiros">
+    
+    <parceiro xmlns="">
+        <Id_parceiro>AR84</Id_parceiro>
+    </parceiro>
+    
+    <parceiro xmlns="">
+        <Id_parceiro>FM55</Id_parceiro>
+    </parceiro>
+    
+</parceiros>
+    

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+    elementFormDefault="unqualified"
+    xmlns="http://projeto.pei.estg/2022/Marcacoes"
+    targetNamespace="http://projeto.pei.estg/2022/Marcacoes">
+    
+    <xs:element name = "marcacao">
+        <xs:complexType>
+            <xs:annotation>
+                <xs:documentation>O que uma marcação tem</xs:documentation>
+            </xs:annotation>
+            <xs:sequence>
+                <xs:element name = "Codigo_marcacao" type = "xs:integer"/>
+                <xs:element name = "Local" type = "Local"/>
+                <xs:element name = "Info_veiculo" type = "VeiculoType"/>
+                <xs:element name = "Id_Perito" type = "xs:string"/>
+                <xs:element name = "Data" type = "xs:date"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:complexType name = "Local">
+        <xs:sequence>
+            <xs:annotation>
+                <xs:documentation>Os elementos que constituem Local</xs:documentation>
+            </xs:annotation>
+            <xs:element name="morada" type="Morada"/>
+            <xs:element name="name" type="xs:string"/>
+            <xs:choice>
+                <xs:annotation>
+                    <xs:documentation>Deve escolher entre um dos elementos</xs:documentation>
+                </xs:annotation>
+                <xs:element name="oficina" type="oficina"/>
+                <xs:element name="dono" type="xs:boolean"/>
+            </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="Morada">
+        <xs:sequence>
+            <xs:annotation>
+                <xs:documentation>Os elementos que constituem Morada</xs:documentation>
+            </xs:annotation>
+            <xs:element name="cidade" type="xs:string"/>
+            <xs:element name="codigo_postal" type="codigo_postal"/>
+            <xs:element name="rua" type="xs:string"/>
+            <xs:element name="numero_porta" type="xs:integer"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:simpleType name="codigo_postal">
+        <xs:restriction base="xs:string">
+            <xs:annotation>
+                <xs:documentation>Uma restrição da maneira que se deve escrever o codigo postal</xs:documentation>
+            </xs:annotation>
+            <xs:pattern value="[0-9][0-9][0-9][0-9][-][0-9][0-9][0-9]"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+   <xs:simpleType name="oficina">
+       <xs:annotation>
+           <xs:documentation>deve-se escrever sim se for oficina</xs:documentation>
+       </xs:annotation>
+       <xs:restriction base="xs:string">
+           <xs:pattern value="sim"/>
+       </xs:restriction>
+   </xs:simpleType>
+    
+    
+    
+    <xs:complexType name="VeiculoType">
+        <xs:sequence>
+            <xs:annotation>
+                <xs:documentation>Os elementos que constituem tipo de veiculo</xs:documentation>
+            </xs:annotation>
+            <xs:element name="Marca" type="xs:string"/>
+            <xs:element name="Modelo" type="xs:string"/>
+            <xs:element name="Combustivel">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>Deve se selecionar uma das opções da enumeração</xs:documentation>
+                        </xs:annotation>
+                        <xs:enumeration value="Diesel"/>
+                        <xs:enumeration value="Gasoline"/>
+                        <xs:enumeration value="Eletric/Gasoline"/>
+                        <xs:enumeration value="Eletric"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Transmissao">
+                <xs:simpleType>
+                    <xs:annotation>
+                        <xs:documentation>Deve se selecionar uma das opções da enumeração</xs:documentation>
+                    </xs:annotation>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Auto"/>
+                        <xs:enumeration value="Manual"/>                       
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Ano" type="xs:integer"/>
+            <xs:element name="Cavalagem" type="xs:integer"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

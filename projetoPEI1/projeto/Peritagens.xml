@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<peritagens xmlns="http://projeto.pei.estg/2022/Peritagens"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://projeto.pei.estg/2022/Peritagens ../projeto/Peritagens.xsd">
+    <peritagem xmlns="">
+        <Dia>2022-03-14</Dia>
+        <Codigo>1</Codigo>
+        <Id_parceiro>AR84</Id_parceiro>
+        <Id_perito>AS10</Id_perito>
+        <Estado_peritagem Verificação="Realizada"></Estado_peritagem>
+        <Hora_inicio>10:00:00</Hora_inicio>
+        <Hora_fim>11:00:00</Hora_fim>
+        <Nome_entidade>Arroz branco</Nome_entidade>
+        <Tipo_entidade>Cliente</Tipo_entidade>
+        <Parametros>
+            <Estado_bateria Conformidade="Yes"></Estado_bateria>
+            <Nivel_oleo_transmissao Conformidade="No">
+                <Estados_oleo_transmissao>Dirty</Estados_oleo_transmissao>
+                <Estados_oleo_transmissao>Leakage_from_Side_cover</Estados_oleo_transmissao>
+            </Nivel_oleo_transmissao>
+            <Transmissao_motor Conformidade="Yes"></Transmissao_motor>
+            <Sistema_refrigeracao Conformidade="Yes"></Sistema_refrigeracao>
+            <Suporte_motor Conformidade="Yes"></Suporte_motor>
+            <Som_motor Conformidade="Yes"></Som_motor>
+            <Gases Conformidade="Yes"></Gases>
+            <Caixa_velocidades Conformidade="Yes"></Caixa_velocidades>
+            <Numero_quilometros>100000</Numero_quilometros>
+        </Parametros>
+    </peritagem>
+</peritagens>

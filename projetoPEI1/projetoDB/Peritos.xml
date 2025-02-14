@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<peritos xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns="http://projeto.pei.estg/2022/Peritos">
+    
+    <perito xmlns="">
+        <Id_perito>AS10</Id_perito>
+    </perito>
+    
+    <perito xmlns="">
+        <Id_perito>CF08</Id_perito>
+    </perito>
+
+</peritos>

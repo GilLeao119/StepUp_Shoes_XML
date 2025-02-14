@@ -1,0 +1,162 @@
+{
+	"info": {
+		"_postman_id": "3a97a855-6885-4021-9b42-26f4d96928f9",
+		"name": "New Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24685781"
+	},
+	"item": [
+		{
+			"name": "SeePeritagem",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/peritagem/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"peritagem",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PeritagemParceiro",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/peritagem/ver/1?Dia=2022-03-12",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"peritagem",
+						"ver",
+						"1"
+					],
+					"query": [
+						{
+							"key": "Dia",
+							"value": "2022-03-12"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PeritagensPerito",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/findMarcacoes/CF08",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"findMarcacoes",
+						"CF08"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AdicionarPeritagem",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<peritagens xmlns=\"http://projeto.pei.estg/2022/Peritagens\">\r\n    <peritagem xmlns=\"\">\r\n        <Dia>2022-03-14</Dia>\r\n        <Codigo>1</Codigo>\r\n        <Id_parceiro>AR84</Id_parceiro>\r\n        <Id_perito>AS10</Id_perito>\r\n        <Estado_peritagem Verificação=\"Realizada\"></Estado_peritagem>\r\n        <Hora_inicio>10:00:00</Hora_inicio>\r\n        <Hora_fim>11:00:00</Hora_fim>\r\n        <Nome_entidade>Arroz branco</Nome_entidade>\r\n        <Tipo_entidade>Cliente</Tipo_entidade>\r\n        <Parametros>\r\n            <Estado_bateria Conformidade=\"Yes\"></Estado_bateria>\r\n            <Nivel_oleo_transmissao Conformidade=\"No\">\r\n                <Estados_oleo_transmissao>Dirty</Estados_oleo_transmissao>\r\n                <Estados_oleo_transmissao>Leakage_from_Side_cover</Estados_oleo_transmissao>\r\n            </Nivel_oleo_transmissao>\r\n            <Transmissao_motor Conformidade=\"Yes\"></Transmissao_motor>\r\n            <Sistema_refrigeracao Conformidade=\"Yes\"></Sistema_refrigeracao>\r\n            <Suporte_motor Conformidade=\"Yes\"></Suporte_motor>\r\n            <Som_motor Conformidade=\"Yes\"></Som_motor>\r\n            <Gases Conformidade=\"Yes\"></Gases>\r\n            <Caixa_velocidades Conformidade=\"Yes\"></Caixa_velocidades>\r\n            <Numero_quilometros>100000</Numero_quilometros>\r\n        </Parametros>\r\n    </peritagem>\r\n</peritagens>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/peritagem",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"peritagem"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AdicionarMarcacao",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<marcacao xmlns=\"http://projeto.pei.estg/2022/Marcacoes\">\r\n    <Codigo_marcacao xmlns=\"\">1</Codigo_marcacao>\r\n    <Local xmlns=\"\">\r\n        <morada>\r\n            <cidade>porto</cidade>\r\n            <codigo_postal>4615-693</codigo_postal>\r\n            <rua>rua do batalhao</rua>\r\n            <numero_porta>92</numero_porta>\r\n        </morada>\r\n        <name>Arroz de pato</name>\r\n        <dono>true</dono>\r\n    </Local>\r\n    <Info_veiculo xmlns=\"\">\r\n        <Marca>Mercedes</Marca>\r\n        <Modelo>S63</Modelo>\r\n        <Combustivel>Gasoline</Combustivel>\r\n        <Transmissao>Auto</Transmissao>\r\n        <Ano>2003</Ano>\r\n        <Cavalagem>260</Cavalagem>\r\n    </Info_veiculo>\r\n    <Id_Perito xmlns=\"\">CF08</Id_Perito>\r\n    <Data xmlns=\"\">2003-03-03</Data>\r\n</marcacao>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/marcacao",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"marcacao"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Alterar",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<peritagens xmlns=\"http://projeto.pei.estg/2022/Peritagens\"\r\n xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n xsi:schemaLocation=\"http://projeto.pei.estg/2022/Peritagens ../projeto/Peritagens.xsd\">\r\n    <peritagem xmlns=\"\">\r\n        <Dia>2022-03-14</Dia>\r\n        <Codigo>1</Codigo>\r\n        <Id_parceiro>AR84</Id_parceiro>\r\n        <Id_perito>AS10</Id_perito>\r\n        <Estado_peritagem Verificação=\"Realizada\"></Estado_peritagem>\r\n        <Hora_inicio>10:00:00</Hora_inicio>\r\n        <Hora_fim>11:00:00</Hora_fim>\r\n        <Nome_entidade>Arroz branco</Nome_entidade>\r\n        <Tipo_entidade>Cliente</Tipo_entidade>\r\n        <Parametros>\r\n            <Estado_bateria Conformidade=\"Yes\"></Estado_bateria>\r\n            <Nivel_oleo_transmissao Conformidade=\"No\">\r\n                <Estados_oleo_transmissao>Dirty</Estados_oleo_transmissao>\r\n                <Estados_oleo_transmissao>Leakage_from_Side_cover</Estados_oleo_transmissao>\r\n            </Nivel_oleo_transmissao>\r\n            <Transmissao_motor Conformidade=\"Yes\"></Transmissao_motor>\r\n            <Sistema_refrigeracao Conformidade=\"Yes\"></Sistema_refrigeracao>\r\n            <Suporte_motor Conformidade=\"Yes\"></Suporte_motor>\r\n            <Som_motor Conformidade=\"Yes\"></Som_motor>\r\n            <Gases Conformidade=\"Yes\"></Gases>\r\n            <Caixa_velocidades Conformidade=\"Yes\"></Caixa_velocidades>\r\n            <Numero_quilometros>100000</Numero_quilometros>\r\n        </Parametros>\r\n    </peritagem>\r\n</peritagens>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/peritagem/alterar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"peritagem",
+						"alterar"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
